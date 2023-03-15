@@ -1,14 +1,28 @@
 const express= require('express')
-const app= express;
+const app= express();
+const cors=require("cors")
 const port=3000;
-app.get('/',(req,res)=>{
-res.send('esta es la raiz')
-})
+
+
+app.use(cors());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+const router = require('./routes/index')
+
+app.use("/",router);
+
+
+
+
+
+
+
 app.listen(port,()=>{
 
-console.log(`mi aplicacion corriendo en el puerto ${port}`)
+console.log(`server in  http://localHost:${port}`)
 
 })
 
-console.log("Hola Mundo")
+
 
