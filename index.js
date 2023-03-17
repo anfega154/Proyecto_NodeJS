@@ -1,16 +1,17 @@
+const conection=require('./database/conection')
+conection();
+
 const express= require('express')
 const app= express();
 const cors=require("cors")
-const port=3000;
-
-
-app.use(cors());
+require('dotenv').config({path:'./.env'});
+const port = process.env.PORT;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-const router = require('./routes/index')
+const router = require('./routes/user')
 
-app.use("/",router);
+app.use("/api",router);
 
 
 
