@@ -1,10 +1,12 @@
+//exportar modulo esquemas 
 const {Schema,model}=require('mongoose')
 
+// en objeto declaramos el modelo del esquema con el vamos a trabajasr
 const UserSchema= Schema({
     name:{
         type: String,
         required:true,
-        unique:true
+    
     },
     lastName:{
         type: String,
@@ -22,16 +24,17 @@ type:Number
    age:{
     type:Number
    },
-   profesion:{
+   profession:{
     type:String,
     required:true
    },
-   cedula:{
+   document:{
     type:Number,
-    required:true
+    required:true,
+    unique:true
    }
   
 
 })
-
+// exportamos modelo 
 module.exports= model("user",UserSchema)
