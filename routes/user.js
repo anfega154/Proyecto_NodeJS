@@ -1,3 +1,4 @@
+const { rules } = require('eslint-config-prettier');
 const express = require('express')
 const router = express.Router();
 // importamos el modulos de los controladores 
@@ -10,7 +11,11 @@ router.get('/',(req,res)=>{
 
     
     // lammar controladores
-    router.post('/save',userController.save)
+    router.post('/save',userController.save);
+    router.get('/find',userController.findAll);
+    router.get('/findone',userController.find);
+    router.post('/edit',userController.edit);
+    router.delete('/delete',userController.deleting);
 
 
 module.exports=router;
