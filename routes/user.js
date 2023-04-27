@@ -8,14 +8,159 @@ const userController = require('../controller/user')
 router.get('/',(req,res)=>{
     res.send('esta es la raiz')
     })
+/**
+ * @swagger
+ * tags:
+ *   name: Users
+ *   description: API para gestionar usuarios
+ */
 
-    
-    // lammar controladores
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     User:
+ *       type: object
+ *       required:
+ *         - nombresUsuario
+ *         - celularUsuario
+ *       properties:
+ *         id:
+ *           type: string
+ *           description: ID generado automáticamente por MongoDB
+ *         nombresUsuario:
+ *           type: string
+ *           description: Nombre completo del usuario
+ *         celularUsuario:
+ *           type: number
+ *           description: Número de teléfono del usuario
+ *       example:
+ *         id: 60a3f3ca4827d03154d694a7
+ *         nombresUsuario: John Doe
+ *         celularUsuario: 1234567890
+ */
+
+/**
+ * @swagger
+ * /api/users:
+ *   post:
+ *     summary: Agrega un nuevo usuario
+ *     tags: [Users]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/User'
+ *     responses:
+ *       200:
+ *         description: Usuario agregado exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
+ *       400:
+ *         description: Los campos nombresUsuario y celularUsuario son requeridos
+ */
     router.post('/save',userController.save);
-    router.get('/find',userController.findAll);
-    router.get('/findone',userController.find);
+/**
+ * @swagger
+ * /api/users:
+ *   get:
+ *     summary: Obtiene todos los usuarios
+ *     tags: [Users]
+ *     responses:
+ *       200:
+ *         description: Lista de todos los usuarios
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/User'
+ */
+router.get('/find',userController.findAll);
+/**
+ * @swagger
+ * /api/users/:
+ *   get:
+ *     summary: Obtiene un usuario por su ID
+ *     tags: [Users]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: ID del usuario a obtener
+ *     responses:
+ *       200:
+ *         description: Usuario encontrado exitosamente
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/User'
+ *       404:
+ *         description: El usuario con el ID especificado no fue encontrado
+ */
+router.get('/findone',userController.find);
+
+/**
+ * @swagger
+ * /api/users/:
+ *   post:
+ *     summary: Actualiza un usuario existente
+ *     tags: [Users]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: ID del usuario a actualizar
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/User'
+ *     responses:
+ *       200:
+ *         description: Usuario actualizado exitosamente
+ *       404:
+ *         description: El usuario con el ID especificado no fue editado
+ *
+ */
     router.post('/edit',userController.edit);
-    router.delete('/delete',userController.deleting);
+
+
+/**
+ * @swagger
+ * /api/users/:
+ *   delete:
+ *     summary: Elimina un usuario existente
+ *     tags: [Users]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: ID del usuario a actualizar
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/User'
+ *     responses:
+ *       200:
+ *         description: Usuario eliminado exitosamente
+ *       404:
+ *         description: El usuario con el ID especificado no fue eliminado
+ *
+ */
+router.delete('/delete',userController.deleting);
 
 
 module.exports=router;
