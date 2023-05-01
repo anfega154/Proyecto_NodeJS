@@ -21,19 +21,19 @@ router.get('/',(req,res)=>{
  *   schemas:
  *     User:
  *       type: object
- *       required:
- *         - nombresUsuario
- *         - celularUsuario
+ *         - name
+ *         - profession
+ *         -document
  *       properties:
  *         id:
  *           type: string
  *           description: ID generado automáticamente por MongoDB
- *         nombresUsuario:
+ *           name:
  *           type: string
- *           description: Nombre completo del usuario
- *         celularUsuario:
- *           type: number
- *           description: Número de teléfono del usuario
+ *           description: Nombre del usuario.
+ *         profession:
+ *           type: string
+ *           description: profesion del usuario.
  *       example:
  *         id: 60a3f3ca4827d03154d694a7
  *         nombresUsuario: John Doe
@@ -42,7 +42,7 @@ router.get('/',(req,res)=>{
 
 /**
  * @swagger
- * /api/users:
+ * /api/users/save:
  *   post:
  *     summary: Agrega un nuevo usuario
  *     tags: [Users]
@@ -65,7 +65,7 @@ router.get('/',(req,res)=>{
     router.post('/save',userController.save);
 /**
  * @swagger
- * /api/users:
+ * /api/users/find:
  *   get:
  *     summary: Obtiene todos los usuarios
  *     tags: [Users]
@@ -82,7 +82,7 @@ router.get('/',(req,res)=>{
 router.get('/find',userController.findAll);
 /**
  * @swagger
- * /api/users/:
+ * /api/users/findone:
  *   get:
  *     summary: Obtiene un usuario por su ID
  *     tags: [Users]
@@ -107,7 +107,7 @@ router.get('/findone',userController.find);
 
 /**
  * @swagger
- * /api/users/:
+ * /api/users/edit:
  *   post:
  *     summary: Actualiza un usuario existente
  *     tags: [Users]
@@ -136,7 +136,7 @@ router.get('/findone',userController.find);
 
 /**
  * @swagger
- * /api/users/:
+ * /api/users/delete:
  *   delete:
  *     summary: Elimina un usuario existente
  *     tags: [Users]

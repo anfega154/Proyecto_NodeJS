@@ -9,18 +9,19 @@ const {Schema,model}=require('mongoose')
  *     Usuario:
  *       type: object
  *       required:
- *         - nombresUsuario
- *         - celularUsuario
+ *         - name
+ *         - profession
+ *         -document
  *       properties:
- *         nombresUsuario:
+ *         name:
  *           type: string
  *           description: Nombre del usuario.
- *         celularUsuario:
- *           type: number
- *           description: Número de celular del usuario.
+ *         profession:
+ *           type: string
+ *           description: profesion del usuario.
  *       example:
- *         nombresUsuario: John Doe
- *         celularUsuario: 123456789
+ *         name: John Doe
+ *         profession: 123456789
  */
 // en objeto declaramos el modelo del esquema con el vamos a trabajasr
 const UserSchema= Schema({

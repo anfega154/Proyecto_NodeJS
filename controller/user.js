@@ -34,7 +34,15 @@ const save = async (req, res) => {
   // si el usuario no exite crea un objeto en base a los parametros
   const user = new User(params);
   // le indicamos que nos guarde el objeto en la base de datos con el metodo save
-  user.save(user);
+  try {
+    await user.save();
+  } catch (error) {
+    return res.status(500).json({
+      status: 'error',
+      message: 'Error al guardar el usuario en la base de datos',
+      error: error,
+    });
+  }
   // retornamos un mensaje de exito
   return res.status(200).json({
     estatus: 'success',
