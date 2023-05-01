@@ -17,29 +17,54 @@ router.get('/',(req,res)=>{
 
 /**
  * @swagger
- * components:
+  * components:
  *   schemas:
  *     User:
  *       type: object
+ *       required:
  *         - name
+ *         - lastName
+ *         - bornYear
+ *         - gender
+ *         - tall
+ *         - age   
  *         - profession
- *         -document
+ *         - document
  *       properties:
- *         id:
- *           type: string
- *           description: ID generado automáticamente por MongoDB
- *           name:
+ *         name:
  *           type: string
  *           description: Nombre del usuario.
+ *         lastNname:
+ *           type: string
+ *           description: Apellido del usuario.
+ *         bornYear:
+ *           type: number
+ *           description: Año de nacimiento del usuario.
+ *         gender:
+ *           type: string
+ *           description: Genero del usuario.
+ *         tall:
+ *           type: number
+ *           description: Altura del usuario.
+ *         age:
+ *           type: number
+ *           description: Edad del usuario.
  *         profession:
  *           type: string
  *           description: profesion del usuario.
- *       example:
- *         id: 60a3f3ca4827d03154d694a7
- *         nombresUsuario: John Doe
- *         celularUsuario: 1234567890
+ *         document:
+ *           type: number
+ *           description: documento del usuario.
+ *         example:
+ *           name: John 
+ *           lastName: Doe
+ *           bornYear: 1994
+ *           gender: masculino
+ *           tall: 174
+ *           age: 29
+ *           profession: developer
+ *           document: 123456789
  */
-
 /**
  * @swagger
  * /api/users/save:
@@ -65,7 +90,7 @@ router.get('/',(req,res)=>{
     router.post('/save',userController.save);
 /**
  * @swagger
- * /api/users/find:
+ * /api/users/findall:
  *   get:
  *     summary: Obtiene todos los usuarios
  *     tags: [Users]
@@ -84,7 +109,7 @@ router.get('/find',userController.findAll);
  * @swagger
  * /api/users/findone:
  *   get:
- *     summary: Obtiene un usuario por su ID
+ *     summary: Obtiene un usuario por su document
  *     tags: [Users]
  *     parameters:
  *       - in: path
