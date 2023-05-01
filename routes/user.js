@@ -85,7 +85,7 @@ router.get('/',(req,res)=>{
  *             schema:
  *               $ref: '#/components/schemas/User'
  *       400:
- *         description: Los campos nombresUsuario y celularUsuario son requeridos
+ *         description: Los campos name, lastname, profession y document  son requeridos
  */
     router.post('/save',userController.save);
 /**
@@ -126,7 +126,7 @@ router.get('/find',userController.findAll);
  *             schema:
  *               $ref: '#/components/schemas/User'
  *       404:
- *         description: El usuario con el ID especificado no fue encontrado
+ *         description: El usuario con el document especificado no fue encontrado
  */
 router.get('/findone',userController.find);
 
@@ -153,7 +153,7 @@ router.get('/findone',userController.find);
  *       200:
  *         description: Usuario actualizado exitosamente
  *       404:
- *         description: El usuario con el ID especificado no fue editado
+ *         description: El usuario con el document especificado no fue editado
  *
  */
     router.post('/edit',userController.edit);
@@ -182,7 +182,7 @@ router.get('/findone',userController.find);
  *       200:
  *         description: Usuario eliminado exitosamente
  *       404:
- *         description: El usuario con el ID especificado no fue eliminado
+ *         description: El usuario con el document especificado no fue eliminado
  *
  */
 router.delete('/delete',userController.deleting);
